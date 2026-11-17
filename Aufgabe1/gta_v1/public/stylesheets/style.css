@@ -10,6 +10,7 @@
 
 html {
   box-sizing: border-box;
+  /*margin: 10%;*/
 }
 
 * {
@@ -111,10 +112,82 @@ a {
 
 /* ... your code here ... */
 
+.header {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #efefee;
+  margin-bottom: 5px;
+  min-height: 20vh;
+  padding: 5%;
+  border-bottom: 2px solid #d4d3d3;
+
+
+  img {
+    width: 10%;
+  }
+}
+
 
 /* ### TODO ### Styles for Main Component */
 
 /* ... your code here ... */
+
+main {
+  padding: 2rem;
+
+  h2 {
+    padding: 0rem 0rem 1rem 0rem;
+
+  }
+
+  label {
+    display: block;
+    margin: 0.5rem 0rem 0rem 0.5rem;
+    color: #6a6a6a;
+    font-weight: 400;
+  }
+
+  input {
+    display: block;
+    margin: 0rem 0rem 1rem 0.5rem;
+    padding: 0.5rem;
+    border: 1.7px solid #d4d3d3;
+    width: 200px;
+
+  }
+
+  input[type="submit"] {
+    width: 200px;
+    color: black;
+  }
+
+  input:read-only {
+    background-color: #f8f8f7;
+    color: #6a6a6a;
+
+  }
+
+  legend {
+    font-weight: bold;
+    margin-left: 10px;
+
+  }
+
+  fieldset {
+    padding-left: 10px;
+    padding-right: 30px;
+    border: 2px solid #d4d3d3;
+    margin-bottom: 2rem;
+  }
+}
+
+.grid-container {
+  display: grid;
+
+}
+
 
 
 /* ### TODO ### Styles for Tagging component */
@@ -127,11 +200,63 @@ a {
 /* ... your code here ... */
 
 
+.discovery__map,
+.col-8 {
+
+  img {
+    width: 100%;
+  }
+
+  span {
+    color: #6a6a6a;
+    font-weight: 500;
+  }
+}
+
+ul {
+  list-style-type: none;
+
+}
+
+
+li {
+  padding: 10px;
+  margin-bottom: 15px;
+  background-color: var(--background-color);
+  color: var(--link-color);
+  border: 1.7px solid #d4d3d3;
+}
+
+
+
+
 /* ### TODO ### Styles for Footer Component */
 
 /* ... your code here ... */
+footer {
+  border-top: 1px solid #d4d3d3;
+  font: 12px "Lucida Grande", Helvetica, Arial, sans-serif;
+  display: flex;
+  background-color: #efefee;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  min-height: 10vh;
+  padding: 5%;
+}
 
 
 /* ### TODO ### Media Queries */
 
 /* ... your code here ... */
+
+@media (width < 1000px) {
+  .row {
+    flex-direction: column;
+  }
+
+  .row>* {
+    width: 100%;
+  }
+
+}
