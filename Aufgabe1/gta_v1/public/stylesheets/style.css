@@ -33,6 +33,7 @@ html {
 
 /* HTML element styles */
 
+
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   display: flex;
@@ -46,8 +47,24 @@ a {
 
 /* ### TODO ### Styles for other HTML elements */
 
-/* ... your code here ... */
+.button{
+  background-color: #929292;  
+  color: white;   
+  border: 1px solid #ccc; 
 
+  padding: 10px 10px;             
+  width: 100%;
+}
+
+input {                  
+  padding: 10px 12px;          
+  
+  border: 1px solid #ccc;      
+  border-radius: 2px;          
+  background-color: #fff;
+
+  color: #929292;
+}
 
 /* Grid styles (no changes required) */
 
@@ -109,29 +126,118 @@ a {
 
 /* ### TODO ### Styles for Header Component */
 
-/* ... your code here ... */
+header {
+  display: flex;
+  background-color: #bdbdbd;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 120px;
+  padding: 0 20px; 
+}
 
+.header__image {
+  width: 5%;
+}
+
+h2 {
+  margin-bottom: 0.5rem;
+}
 
 /* ### TODO ### Styles for Main Component */
 
-/* ... your code here ... */
-
+.main {
+  padding: 1.5rem;
+}
 
 /* ### TODO ### Styles for Tagging component */
 
-/* ... your code here ... */
+.main__tagging {
+  display: flex;
+  flex-direction: column;
+}
 
+#tag-form fieldset {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;  
+  gap: 0.5rem;
+}
+
+#tag-form label {
+  display: flex;
+  flex-direction: column;
+  color:#bdbdbd;
+}
 
 /* ### TODO ### Styles for Discovery component */
 
-/* ... your code here ... */
+.main__discovery {
+  display: flex;
+  flex-direction: column;
+}
+
+.discovery__wrapper {
+  margin-top: 1.5rem;
+  color:#929292
+}
+
+.discovery__map img {
+  width: 100%;
+  display: block;
+}
+
+.discovery__results {
+  list-style: none
+
+}
+
+.discovery__results li {
+  background-color: var(--background-color);
+  border: 1px solid var(--border-color);
+  color: var(--link-color);
+  padding: 15px;
+  margin-bottom: 1rem;
+}
+
+#discoveryFilterForm fieldset {
+  display: flex;
+  flex-direction: column;
+  padding: 10px; 
+  gap: 0.5rem;
+}
+
+#discoveryFilterForm label {
+  display: flex;
+  flex-direction: column;
+  color:#bdbdbd;
+  gap: 0.5rem;
+}
 
 
 /* ### TODO ### Styles for Footer Component */
 
-/* ... your code here ... */
+footer {
+  display: flex;
+  background-color: #bdbdbd;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 120px;
+  padding: 0 20px; 
+  font-weight: bold;
+}
 
 
 /* ### TODO ### Media Queries */
 
-/* ... your code here ... */
+@media (max-width: 850px) {
+  .row {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  [class*="col-"] {
+    width: 100%;
+  }
+}
