@@ -37,10 +37,10 @@
                     <input class="row fixed-value" name="longitude" id="longitude" type="text" value="8.390071" readonly/>
 
                     <label class="row" for="name">Name:</label>
-                    <input class="row" name="name" id="name" type="text" placeholder="e.g. Central Berlin" pattern="\w{1,10}" required/>
+                    <input class="row" name="name" id="name" type="text" placeholder="e.g. Central Berlin" required maxlength="10" pattern="[A-Za-zÜÄÖẞüööß]{1,10}" title="Max. 10 letters"/>
 
                     <label class="row" for="hashtag">Hashtag:</label>
-                    <input class="row" name="hashtag" id="hashtag" type="text" placeholder="e.g. #ber" pattern="[#]{0,1}\w{1,10}" required/>
+                    <input class="row" name="hashtag" id="hashtag" type="text" placeholder="e.g. #ber" maxlength="11" pattern="#[A-Za-zÜÄÖẞüööß]{1,10}" title="# followed by max. 10 letters"/>
 
                     <button class="row" type="button" id="form1button">Add Tag</button>
 
