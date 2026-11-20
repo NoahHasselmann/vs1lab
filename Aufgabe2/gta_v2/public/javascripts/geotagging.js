@@ -12,7 +12,7 @@ console.log("The geoTagging script is going to start...");
 // Here the API used for geolocations is selected
 // The following declaration is a 'mockup' that always works and returns a fixed position.
 var GEOLOCATION_API = {
-    getCurrentPosition: function(onsuccess) {
+    getCurrentPosition: function (onsuccess) {
         onsuccess({
             "coords": {
                 "latitude": 49.013790,
@@ -52,15 +52,15 @@ class LocationHelper {
         return this.#longitude;
     }
 
-   /**
-    * Create LocationHelper instance if coordinates are known.
-    * @param {string} latitude 
-    * @param {string} longitude 
-    */
-   constructor(latitude, longitude) {
-       this.#latitude = (parseFloat(latitude)).toFixed(5);
-       this.#longitude = (parseFloat(longitude)).toFixed(5);
-   }
+    /**
+     * Create LocationHelper instance if coordinates are known.
+     * @param {string} latitude 
+     * @param {string} longitude 
+     */
+    constructor(latitude, longitude) {
+        this.#latitude = (parseFloat(latitude)).toFixed(5);
+        this.#longitude = (parseFloat(longitude)).toFixed(5);
+    }
 
     /**
      * The 'findLocation' method requests the current location details through the geolocation API.
@@ -85,7 +85,7 @@ class LocationHelper {
             // Pass the locationHelper object to the callback.
             callback(helper);
         }, (error) => {
-           alert(error.message)
+            alert(error.message)
         });
     }
 }
@@ -110,7 +110,8 @@ class MapManager {
         var mapLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
         L.tileLayer(
             'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; ' + mapLink + ' Contributors'}).addTo(this.#map);
+            attribution: '&copy; ' + mapLink + ' Contributors'
+        }).addTo(this.#map);
         this.#markers = L.layerGroup().addTo(this.#map);
     }
 
@@ -127,9 +128,9 @@ class MapManager {
             .bindPopup("Your Location")
             .addTo(this.#markers);
         for (const tag of tags) {
-            L.marker([tag.latitude,tag.longitude])
+            L.marker([tag.latitude, tag.longitude])
                 .bindPopup(tag.name)
-                .addTo(this.#markers);  
+                .addTo(this.#markers);
         }
     }
 }
@@ -139,9 +140,52 @@ class MapManager {
  * A function to retrieve the current location and update the page.
  * It is called once the page has been fully loaded.
  */
+
+//findLocation instanziiert bei Eroflg LocationHelper Objekt, LocationHelper Objekt ehthält aktuellen Koordinaten 
+// als private Properties, können mit get Methode ausgelesen werden 
+// Bei Aufruf der Funktion muss Callback Funktion übergeben werden 
+
+//TODO: 
+// Auslesen der Position mit findLocation 
+// im Erfolgsfall latitude, longitude von Tagging/ Discovery Formular suchen und in value Attribute schreiben 
+// Automatisches aufrufen der update Funktion nach Laden des Dokuments 
+
+function updateLocation() {
+    LocationHelper.findLocation((helper) => {
+
+
+        const longitude = document.getElementById("longitude");
+        longitude.value = helper.longitude;
+
+        const latitude = document.getElementById("latitude");
+        latitude.value = helper.latitude;
+
+
+        const mapManager = new MapManager();
+
+        mapManager.initMap(Number(helper.latitude), Number(helper.longitude));
+        mapManager.updateMarkers(Number(helper.latitude), Number(helper.longitude));
+
+
+        const img = document.getElementById("mapView");
+        img.remove();
+
+        const beschriftung = document.getElementsByTagName("span");
+        for (const element of beschriftung) {
+            element.remove();
+        }
+
+    });
+}
+
 // ... your code here ...
 
 // Wait for the page to fully load its DOM content, then call updateLocation
 document.addEventListener("DOMContentLoaded", () => {
-    alert("Please change the script 'geotagging.js'");
+
+    updateLocation();
+    // alert("Please change the script 'geotagging.js'");
+
+
+
 });
