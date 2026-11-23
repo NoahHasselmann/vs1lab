@@ -4,7 +4,7 @@
 
 // This script is executed when the browser loads index.html.
 
-// "console.log" writes to the browser's console. 
+// "console.log" writes to the browser's console.
 // The console window must be opened explicitly in the browser.
 // Try to find this output in the browser...
 console.log("The geoTagging script is going to start...");
@@ -54,8 +54,8 @@ class LocationHelper {
 
    /**
     * Create LocationHelper instance if coordinates are known.
-    * @param {string} latitude 
-    * @param {string} longitude 
+    * @param {string} latitude
+    * @param {string} longitude
     */
    constructor(latitude, longitude) {
        this.#latitude = (parseFloat(latitude)).toFixed(5);
@@ -129,7 +129,7 @@ class MapManager {
         for (const tag of tags) {
             L.marker([tag.latitude,tag.longitude])
                 .bindPopup(tag.name)
-                .addTo(this.#markers);  
+                .addTo(this.#markers);
         }
     }
 }
@@ -139,9 +139,31 @@ class MapManager {
  * A function to retrieve the current location and update the page.
  * It is called once the page has been fully loaded.
  */
-// ... your code here ...
+const updateLocation = () => {
+  LocationHelper.findLocation(helper => {
+    const {latitude: lat, longitude: lng} = helper
+    updateLatLng(lat, lng)
+
+    const mm = new MapManager()
+    mm.initMap(lat, lng)
+    mm.updateMarkers(lat, lng)
+    removePlaceholders()
+  })
+}
+
+const removePlaceholders = () => {
+  document.querySelector("img#mapView").remove()
+  document.querySelector("#map>span").remove()
+}
+
+const updateLatLng = (lat, lng) => {
+  document.querySelector("#latitude").value = lat
+  document.querySelector("#longitude").value = lng
+  document.querySelector("#latitude-hidden").value = lat
+  document.querySelector("#longitude-hidden").value = lng
+}
 
 // Wait for the page to fully load its DOM content, then call updateLocation
 document.addEventListener("DOMContentLoaded", () => {
-    alert("Please change the script 'geotagging.js'");
+  updateLocation()
 });
